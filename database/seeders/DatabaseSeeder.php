@@ -8,6 +8,7 @@ use App\Models\Tag;
 use Illuminate\Database\Seeder;
 use Prophecy\Call\Call;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Jetstream\Rules\Role;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,8 @@ class DatabaseSeeder extends Seeder
     {
         Storage::deleteDirectory('posts');
         Storage::makeDirectory('posts');
+
+        $this->call(RoleSeeder::class);
 
         $this->call(UserSeeder::class);
         Category::factory(4)->create();
